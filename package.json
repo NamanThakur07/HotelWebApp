@@ -2,7 +2,7 @@
   "name": "demo1",
   "version": "8.1.2",
   "private": true,
-  "homepage": "/metronic8/react/demo1",
+  "homepage": "/dashboard",
   "dependencies": {
     "@formatjs/intl-pluralrules": "4.3.3",
     "@formatjs/intl-relativetimeformat": "10.0.1",
@@ -49,6 +49,7 @@
     "@types/qs": "6.9.7",
     "@types/react": "18.0.6",
     "@types/react-copy-to-clipboard": "5.0.2",
+    "@types/react-datepicker": "^4.4.2",
     "@types/react-dom": "18.0.2",
     "@types/react-table": "^7.7.9",
     "axios": "^0.27.2",

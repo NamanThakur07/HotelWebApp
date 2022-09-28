@@ -34,7 +34,7 @@ const UsersListPagination = () => {
                   className='page-link'
                   onClick={() => updatePage(link.page)}
                   dangerouslySetInnerHTML={{__html: link.label}}
-                  style={{cursor: 'pointer'}}
+                  style={{cursor: 'pointer',width:"90px"}}
                 />
               </li>
             ))}

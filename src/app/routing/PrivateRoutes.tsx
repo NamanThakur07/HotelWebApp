@@ -5,6 +5,7 @@ import TopBarProgress from 'react-topbar-progress-indicator'
 import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
 import {MenuTestPage} from '../pages/MenuTestPage'
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
+import CouponManagement from '../pages/Coupon-Management/CouponManagement'
 
 const PrivateRoutes = () => {
   const BuilderPageWrapper = lazy(() => import('../pages/layout-builder/BuilderPageWrapper'))
@@ -83,6 +84,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <StaffPage />
+            </SuspensedView>
+          }
+        />
+         <Route
+          path='coupon'
+          element={
+            <SuspensedView>
+              <CouponManagement />
             </SuspensedView>
           }
         />

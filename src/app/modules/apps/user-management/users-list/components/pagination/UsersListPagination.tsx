@@ -18,8 +18,8 @@ const UsersListPagination = () => {
     <div className='row'>
       <div className='col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'></div>
       <div className='col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'>
-        <div id='kt_table_users_paginate'>
-          <ul className='pagination'>
+        <div id='kt_table_users_paginate '>
+          <ul className='pagination '>
             {pagination.links?.map((link) => (
               <li
                 key={link.label}
@@ -34,7 +34,7 @@ const UsersListPagination = () => {
                   className='page-link'
                   onClick={() => updatePage(link.page)}
                   dangerouslySetInnerHTML={{__html: link.label}}
-                  style={{cursor: 'pointer'}}
+                  style={{cursor: 'pointer' , width:"90px"}}
                 />
               </li>
             ))}

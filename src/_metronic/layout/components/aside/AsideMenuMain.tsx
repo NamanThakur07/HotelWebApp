@@ -18,35 +18,51 @@ export function AsideMenuMain() {
       />
       <AsideMenuItem
         to='/staff'
-        icon='/media/icons/duotune/art/art002.svg'
+        icon='/media/icons/duotune/general/gen054.svg'
         title={'Staff Management'}
         fontIcon='bi-app-indicator'
       />
       <AsideMenuItem
-        to='/users'
-        icon='/media/icons/duotune/art/art002.svg'
-        title={'User Management'}
-        fontIcon='bi-app-indicator'
-      />
-        <AsideMenuItem
+          to='/coupon'
+          icon='/media/icons/duotune/general/gen029.svg'
+          title='Coupon Management'
+          fontIcon='bi-layers'
+        /> 
+     <AsideMenuItem
         to='/roles'
-        icon='/media/icons/duotune/art/art002.svg'
+        icon='/media/icons/duotune/general/gen055.svg'
         title={'Roles Management'}
         fontIcon='bi-app-indicator'
       />
       <AsideMenuItem
         to='/permissions'
-        icon='/media/icons/duotune/art/art002.svg'
+        icon='/media/icons/duotune/general/gen056.svg'
         title={'Permission Management'}
         fontIcon='bi-app-indicator'
       />
-      {/* <AsideMenuItem
+        <AsideMenuItem
+        to='/users'
+        icon='/media/icons/duotune/general/gen057.svg'
+        title={'User Management'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to='/settings/general'
+        icon='/media/icons/duotune/general/gen058.svg'
+        title={"Settings"}
+        fontIcon='bi-layers'
+      />
+       
+      <AsideMenuItem
         to='/builder'
         icon='/media/icons/duotune/general/gen019.svg'
         title='Layout Builder'
         fontIcon='bi-layers'
       />
-      <div className='menu-item'>
+
+         
+            
+      {/* <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Crafted</span>
         </div>
