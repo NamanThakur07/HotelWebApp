@@ -31,7 +31,7 @@ const checkEmail = (email: string): Promise<PermissionQueryResponse> => {
 
 const getUserById = (id: ID): Promise<Role | undefined> => {
   return axios
-    .get(`${ROLE_URL}/${id}`)
+    .get(`http://localhost:2001/staff/ById/${id}`)
     .then((response: AxiosResponse<Response<Role>>) => response.data)
     .then((response: Response<Role>) => response.data)
 }
@@ -48,10 +48,12 @@ const createUser = (role: Role): Promise<Role | undefined> => {
   fd.append('Coupon_Code',role.Coupon_Code)
   // fd.append('profile_image', role.profile_image)
   // fd.append('admin', admin)
-  fd.append('role_id', role.role_id)
-  fd.append('permissions', JSON.stringify(role.permissions))
+  // fd.append('role_id', role.role_id)
+  // fd.append('permissions', JSON.stringify(role.permissions))
+  console.log("Form Data For Create-Coupon",role);
+
   return axios
-    .post(ROLE_URL, fd)
+    .post('http://localhost:2001/staff/create-coupon', role)
     .then((response: AxiosResponse<Response<Role>>) => response.data)
     .then((response: Response<Role>) => response.data)
 }
@@ -68,20 +70,20 @@ const updateUser = (role: Role): Promise<Role | undefined> => {
   fd.append('Validity', role.Validity)
   fd.append('Coupon_Code',role.Coupon_Code)
   // fd.append('admin', admin)
-  fd.append('role_id', role.role_id)
-  fd.append('permissions', JSON.stringify(role.permissions))
+  // fd.append('role_id', role.role_id)
+  // fd.append('permissions', JSON.stringify(role.permissions))
   return axios
-    .put(`${ROLE_URL}/${role.id}`, fd)
+    .put(`http://localhost:2001/staff/update-coupon/${role.id}`, fd)
     .then((response: AxiosResponse<Response<Role>>) => response.data)
     .then((response: Response<Role>) => response.data)
 }
 
 const deleteUser = (userId: ID): Promise<void> => {
-  return axios.delete(`${ROLE_URL}/${userId}`).then(() => {})
+  return axios.delete(`http://localhost:2001/staff/delete-coupon/${userId}`).then(() => {})
 }
 
 const deleteSelectedUsers = (userIds: Array<ID>): Promise<void> => {
-  const requests = userIds.map((id) => axios.delete(`${ROLE_URL}/${id}`))
+  const requests = userIds.map((id) => axios.delete(`http://localhost:2001/staff/delete-coupon/${id}`))
   return axios.all(requests).then(() => {})
 }
 

@@ -16,7 +16,7 @@ const usersColumns: ReadonlyArray<Column<Role>> = [
     Cell: ({...props}) => <UserSelectionCell id={props.data[props.row.index].id} />,
   },
   {
-    Header: (props) => <UserCustomHeader tableProps={props} title='Coupon Name' className='min-w-125px' />,
+    Header: (props) => <UserCustomHeader tableProps={props} title='Coupon Name' className='xmin-w-125p' />,
     id: 'Coupon_Name',
     Cell: ({...props}) => <UserInfoCell user={props.data[props.row.index]} />,
   },
@@ -42,6 +42,13 @@ const usersColumns: ReadonlyArray<Column<Role>> = [
     ),
     id: 'Coupon_Code',
     Cell: ({...props}) => <PhoneNumber phone_number={props.data[props.row.index].Coupon_Code} />,
+  },
+  {
+    Header: (props) => (
+      <UserCustomHeader tableProps={props} title='Validity' className='min-w-125px' />
+    ),
+    id: 'Validity',
+    Cell: ({...props}) => <PhoneNumber phone_number={props.data[props.row.index].Validity} />,
   },
   {
     Header: (props) => (

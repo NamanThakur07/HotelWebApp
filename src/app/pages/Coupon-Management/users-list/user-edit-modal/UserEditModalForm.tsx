@@ -1,6 +1,6 @@
 import {FC, useEffect, useRef, useState} from 'react'
 import * as Yup from 'yup'
-import {Form, Formik, FormikValues} from 'formik'
+import {Form, Formik, FormikValues , useFormik} from 'formik'
 import {isNotEmpty, KTSVG} from '../../../../../_metronic/helpers'
 import {createAccountSchemas, initialRole, Role} from '../core/_models'
 import {useListView} from '../core/ListViewProvider'
@@ -16,6 +16,14 @@ type Props = {
   isUserLoading: boolean
   role: Role
 }
+
+const CouponEditSchema = Yup.object().shape({
+  Coupon_Code: Yup.string()
+    .required('Coupon Code is required'),
+    Coupon_Name: Yup.string()
+    .required('Coupon Name is required'),
+})
+
 
 const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
 
@@ -86,6 +94,7 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
         if (isNotEmpty(values.id)) {
           await updateUser(values)
         } else {
+          // console.log("Create User",values);
           await createUser(values)
         }
       } catch (ex) {
@@ -96,13 +105,15 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
         cancel(true)
         Swal.fire({
           title: 'Success!',
-          text: `Staff ${values.id ? 'Updated' : 'Created'}!`,
+          text: `Coupon ${values.id ? 'Updated' : 'Created'}!`,
           icon: 'success',
           confirmButtonText: 'Okay',
         })
       }
     }
   }
+
+
 
   return (
     <>
@@ -114,10 +125,6 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
         <div className='stepper-nav mb-5'>
           <div className='stepper-item current' data-kt-stepper-element='nav'>
             <h3 className='stepper-title'>Coupon Info</h3>
-          </div>
-
-          <div className='stepper-item' data-kt-stepper-element='nav'>
-            <h3 className='stepper-title'>Permissions</h3>
           </div>
         </div>
 
@@ -162,7 +169,7 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
                 <div>
                   <button type='submit' className='btn btn-lg btn-primary me-3'>
                     <span className='indicator-label'>
-                      {!isSubmitButton && 'Continue'}
+                      {!isSubmitButton && 'Submit'}
                       {isSubmitButton && 'Submit'}
                       <KTSVG
                         path='/media/icons/duotune/arrows/arr064.svg'

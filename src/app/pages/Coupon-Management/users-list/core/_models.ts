@@ -23,7 +23,7 @@ export const initialRole: Role = {
   Minimum_Order_Value: '',
   Applicable_Cards: '',
   Coupon_Code: '',
-  Validity: null,
+  Validity: '',
   coupon_thumbnail: '',
   permissions: [],
   role_id: null,

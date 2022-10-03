@@ -52,10 +52,10 @@ const Step1: FC<Props> = ({setFieldValue, values, touched, setFieldError, errors
           <div className=''>
             <img
               src={
-                values?.profile_image?.name
-                  ? URL.createObjectURL(values?.profile_image)
-                  : values?.profile_image != null
-                  ? values?.profile_image
+                values?.coupon_thumbnail?.name
+                  ? URL.createObjectURL(values?.coupon_thumbnail)
+                  : values?.coupon_thumbnail != null
+                  ? values?.coupon_thumbnail
                   : toAbsoluteUrl('/media/svg/avatars/blank.svg')
               }
               alt='avatar'
@@ -74,7 +74,7 @@ const Step1: FC<Props> = ({setFieldValue, values, touched, setFieldError, errors
               name='profile_image'
               accept='.png, .jpg, .jpeg'
               onChange={(e: any) => {
-                setFieldValue('profile_image', e.currentTarget.files[0])
+                setFieldValue('coupon_thumbnail', e.currentTarget.files[0])
               }}
             />
             <input type='hidden' name='avatar_remove' />
@@ -86,7 +86,7 @@ const Step1: FC<Props> = ({setFieldValue, values, touched, setFieldError, errors
               data-bs-toggle='tooltip'
               title='Remove avatar'
               type='button'
-              onClick={() => setFieldValue('profile_image', null)}
+              onClick={() => setFieldValue('coupon_thumbnail', null)}
             >
               <i className='bi bi-x fs-2'></i>
             </button>
