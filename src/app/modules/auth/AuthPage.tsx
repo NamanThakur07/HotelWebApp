@@ -16,7 +16,39 @@ const AuthLayout = () => {
   }, [])
 
   return (
-    <div className='d-flex flex-column flex-lg-row flex-column-fluid'> 
+
+    <div className='d-flex flex-column flex-lg-row flex-column-fluid'>
+      <div
+        className='d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative'
+        style={{backgroundColor: '#F2C98A'}}
+      >
+        <div className='d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y'>
+          <div className='d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20'>
+            <a href='../../demo1/dist/index.html' className='py-9 mb-5'>
+              <img alt='Logo' src={toAbsoluteUrl('/media/logos/app-icon.png')} className='h-60px' />
+            </a>
+            <h1 className='fw-bolder fs-2qx pb-5 pb-md-10' style={{color: '#986923'}}>
+              Welcome to Hotel Booking
+            </h1>
+
+            <p className='fw-bold fs-2' style={{color: '#986923'}}>
+              Manage your dashboard
+              <br />
+              after login here
+            </p>
+          </div>
+          {/* <div
+            className='d-flex flex-row-auto'
+            style={{
+              backgroundImage: `url(${toAbsoluteUrl}('/media/illustrations/sketchy-1/13.png'))`,
+              position: 'absolute',
+              backgroundSize: 'cover',
+            }}
+          ></div> */}
+        <div className="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px" style={{backgroundImage: `url(${toAbsoluteUrl('/media/illustrations/sketchy-1/13.png')})`}}></div>
+
+        </div>
+      </div>
       <div className='d-flex flex-column flex-lg-row-fluid py-10'>
         <div className='d-flex flex-center flex-column flex-column-fluid'>
           <div className='w-lg-500px p-10 p-lg-15 mx-auto'>
@@ -25,6 +57,15 @@ const AuthLayout = () => {
         </div>
       </div>
     </div>
+    // <div className='d-flex flex-column flex-lg-row flex-column-fluid'> 
+    //   <div className='d-flex flex-column flex-lg-row-fluid py-10'>
+    //     <div className='d-flex flex-center flex-column flex-column-fluid'>
+    //       <div className='w-lg-500px p-10 p-lg-15 mx-auto'>
+    //         <Outlet />
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
 
     // <div
     //   className='d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed'
