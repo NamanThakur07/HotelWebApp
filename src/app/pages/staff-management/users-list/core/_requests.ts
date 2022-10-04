@@ -31,7 +31,7 @@ const checkEmail = (email: string): Promise<PermissionQueryResponse> => {
 
 const getUserById = (id: ID): Promise<Role | undefined> => {
   return axios
-    .get(`${ROLE_URL}/${id}`)
+    .get(`http://localhost:2001/staff/StaffId/${id}`)
     .then((response: AxiosResponse<Response<Role>>) => response.data)
     .then((response: Response<Role>) => response.data)
 }
@@ -68,7 +68,7 @@ const updateUser = (role: Role): Promise<Role | undefined> => {
   fd.append('role_id', role.role_id)
   fd.append('permissions', JSON.stringify(role.permissions))
   return axios
-    .put(`${ROLE_URL}/${role.id}`, fd)
+    .put(`http://localhost:2001/staff/staff-update/${role.id}`, fd)
     .then((response: AxiosResponse<Response<Role>>) => response.data)
     .then((response: Response<Role>) => response.data)
 }
