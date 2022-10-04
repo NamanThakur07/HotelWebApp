@@ -14,7 +14,11 @@ import {Permission} from './_models'
 import {useQueryRequest} from './QueryRequestProvider'
 
 const QueryResponseContext = createResponseContext<Permission>(initialQueryResponse)
-const QueryResponseProvider: FC = ({children}) => {
+
+type Props = {
+  children:any
+}
+const QueryResponseProvider: FC<Props> = ({children}) => {
   const {state} = useQueryRequest()
   const [query, setQuery] = useState<string>(stringifyRequestQuery(state))
   const updatedQuery = useMemo(() => stringifyRequestQuery(state), [state])

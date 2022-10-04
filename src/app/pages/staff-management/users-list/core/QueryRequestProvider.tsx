@@ -1,4 +1,4 @@
-import {FC, useState, createContext, useContext} from 'react'
+import {FC, useState, createContext, useContext, PropsWithChildren} from 'react'
 import {
   QueryState,
   QueryRequestContextProps,
@@ -7,7 +7,11 @@ import {
 
 const QueryRequestContext = createContext<QueryRequestContextProps>(initialQueryRequest)
 
-const QueryRequestProvider: FC = ({children}) => {
+type Props = {
+  children:any
+}
+
+const QueryRequestProvider: FC<PropsWithChildren<Props>> = ({children}) => {
   const [state, setState] = useState<QueryState>(initialQueryRequest.state)
 
   const updateState = (updates: Partial<QueryState>) => {

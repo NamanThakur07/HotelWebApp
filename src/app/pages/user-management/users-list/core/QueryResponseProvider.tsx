@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {FC, useContext, useState, useEffect, useMemo} from 'react'
+import {FC, useContext, useState, useEffect, useMemo, PropsWithChildren} from 'react'
 import {useQuery} from 'react-query'
 import {
   createResponseContext,
@@ -13,8 +13,12 @@ import {getUsers} from './_requests'
 import {User} from './_models'
 import {useQueryRequest} from './QueryRequestProvider'
 
+type HeaderProps = {
+  children:any
+}
+
 const QueryResponseContext = createResponseContext<User>(initialQueryResponse)
-const QueryResponseProvider: FC = ({children}) => {
+const QueryResponseProvider: FC<PropsWithChildren<HeaderProps>> = ({children}) => {
   const {state} = useQueryRequest()
   const [query, setQuery] = useState<string>(stringifyRequestQuery(state))
   const updatedQuery = useMemo(() => stringifyRequestQuery(state), [state])

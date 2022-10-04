@@ -12,7 +12,11 @@ import {useQueryResponse, useQueryResponseData} from './QueryResponseProvider'
 
 const ListViewContext = createContext<ListViewContextProps>(initialListView)
 
-const ListViewProvider: FC = ({children}) => {
+type Props = {
+  children:any
+}
+
+const ListViewProvider: FC<Props> = ({children}) => {
   const [selected, setSelected] = useState<Array<ID>>(initialListView.selected)
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(initialListView.itemIdForUpdate)
   const {isLoading} = useQueryResponse()

@@ -1,4 +1,4 @@
-import {FC, useState, createContext, useContext, useMemo} from 'react'
+import {FC, useState, createContext, useContext, useMemo, PropsWithChildren} from 'react'
 import {
   ID,
   calculatedGroupingIsDisabled,
@@ -12,7 +12,11 @@ import {useQueryResponse, useQueryResponseData} from './QueryResponseProvider'
 
 const ListViewContext = createContext<ListViewContextProps>(initialListView)
 
-const ListViewProvider: FC = ({children}) => {
+type Props = {
+  children: any
+}
+
+const ListViewProvider: FC<PropsWithChildren<Props>> = ({children}) => {
   const [selected, setSelected] = useState<Array<ID>>(initialListView.selected)
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(initialListView.itemIdForUpdate)
   const {isLoading} = useQueryResponse()

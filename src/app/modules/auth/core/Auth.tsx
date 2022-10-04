@@ -7,6 +7,7 @@ import {
   useRef,
   Dispatch,
   SetStateAction,
+  PropsWithChildren,
 } from 'react'
 import {LayoutSplashScreen} from '../../../../_metronic/layout/core'
 import {AuthModel, UserModel} from './_models'
@@ -34,8 +35,11 @@ const AuthContext = createContext<AuthContextProps>(initAuthContextPropsState)
 const useAuth = () => {
   return useContext(AuthContext)
 }
+interface HeaderProps {
+  children: any;
+}
 
-const AuthProvider: FC = ({children}) => {
+const AuthProvider: FC<PropsWithChildren<HeaderProps>> = ({children}) => {
   const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
   const [currentUser, setCurrentUser] = useState<UserModel | undefined>()
   const saveAuth = (auth: AuthModel | undefined) => {
@@ -59,7 +63,7 @@ const AuthProvider: FC = ({children}) => {
   )
 }
 
-const AuthInit: FC = ({children}) => {
+const AuthInit: FC<PropsWithChildren<HeaderProps>> = ({children}) => {
   const {auth, logout, setCurrentUser} = useAuth()
   const didRequest = useRef(false)
   const [showSplashScreen, setShowSplashScreen] = useState(true)

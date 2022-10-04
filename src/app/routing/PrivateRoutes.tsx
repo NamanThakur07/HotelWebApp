@@ -1,4 +1,4 @@
-import {lazy, FC, Suspense} from 'react'
+import {lazy, FC, Suspense, PropsWithChildren} from 'react'
 import {Route, Routes, Navigate} from 'react-router-dom'
 import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
@@ -134,7 +134,12 @@ const PrivateRoutes = () => {
   )
 }
 
-const SuspensedView: FC = ({children}) => {
+interface HeaderProps {
+  children: any;
+}
+
+
+const SuspensedView: FC<PropsWithChildren<HeaderProps>> = ({children}:any) => {
   const baseColor = getCSSVariableValue('--bs-primary')
   TopBarProgress.config({
     barColors: {
