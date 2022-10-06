@@ -25,7 +25,7 @@ const AuthLayout = () => {
         <div className='d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y'>
           <div className='d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20'>
             <a href='../../demo1/dist/index.html' className='py-9 mb-5'>
-              <img alt='Logo' src={toAbsoluteUrl('/media/logos/app-icon.png')} className='h-60px' />
+              <img alt='Logo' src={toAbsoluteUrl('/media/logos/default-dark.png')} className='h-60px' />
             </a>
             <h1 className='fw-bolder fs-2qx pb-5 pb-md-10' style={{color: '#986923'}}>
               Welcome to Hotel Booking
