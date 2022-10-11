@@ -15,27 +15,27 @@ type Props = {
 
 const Step1: FC<Props> = ({setFieldValue, values, touched, setFieldError, errors}) => {
   console.log(touched, 'touched', errors)
-  const validateEmail = async (value: string) => {
-    let error
-    var re = /\S+@\S+\.\S+/
-    let correct = re.test(value)
-    if (value != '' && correct && !values.id) {
-      await checkEmail(value)
-        .then((data: any) => {
-          if (data.data == 'Email already exists') {
-            error = data.data
-            // setFieldError('email', data.data)
-          } else {
-            error = null
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
+  // const validateEmail = async (value: string) => {
+  //   let error
+  //   var re = /\S+@\S+\.\S+/
+  //   let correct = re.test(value)
+  //   if (value != '' && correct && !values.id) {
+  //     await checkEmail(value)
+  //       .then((data: any) => {
+  //         if (data.data == 'Email already exists') {
+  //           error = data.data
+  //           // setFieldError('email', data.data)
+  //         } else {
+  //           error = null
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   }
 
-    return error
-  }
+  //   return error
+  // }
 
   // const [startDate, setStartDate] = useState();
   const [showPassword, setPasswordShow] = useState(false)
@@ -47,15 +47,15 @@ const Step1: FC<Props> = ({setFieldValue, values, touched, setFieldError, errors
   return (
     <div className='w-100'>
       <div className='fv-row mb-7'>
-        <label className='d-block form-label'>Coupon Thumbnail</label>
+        <label className='d-block form-label'>Hotel Image</label>
         <div className='image-input image-input-outline' data-kt-image-input='true'>
           <div className=''>
             <img
               src={
-                values?.coupon_thumbnail?.name
-                  ? URL.createObjectURL(values?.coupon_thumbnail)
-                  : values?.coupon_thumbnail != null
-                  ? values?.coupon_thumbnail
+                values?.image?.name
+                  ? URL.createObjectURL(values?.image)
+                  : values?.image != null
+                  ? values?.image
                   : toAbsoluteUrl('/media/svg/avatars/blank.svg')
               }
               alt='avatar'
@@ -74,7 +74,7 @@ const Step1: FC<Props> = ({setFieldValue, values, touched, setFieldError, errors
               name='profile_image'
               accept='.png, .jpg, .jpeg'
               onChange={(e: any) => {
-                setFieldValue('coupon_thumbnail', e.currentTarget.files[0])
+                setFieldValue('image', e.currentTarget.files[0])
               }}
             />
             <input type='hidden' name='avatar_remove' />
@@ -86,7 +86,7 @@ const Step1: FC<Props> = ({setFieldValue, values, touched, setFieldError, errors
               data-bs-toggle='tooltip'
               title='Remove avatar'
               type='button'
-              onClick={() => setFieldValue('coupon_thumbnail', null)}
+              onClick={() => setFieldValue('image', null)}
             >
               <i className='bi bi-x fs-2'></i>
             </button>
@@ -97,121 +97,91 @@ const Step1: FC<Props> = ({setFieldValue, values, touched, setFieldError, errors
 
       <div className='d-flex flex-wrap gap-5 mb-10'>
         <div className='fv-row w-100 flex-md-root'>
-          <label className='form-label required'>Coupon Name</label>
+          <label className='form-label required'>Hotel Title</label>
 
-          <Field name='Coupon_Name' className='form-control mb-2' placeholder={'Enter Coupon Name'} />
+          <Field name='Hotel_Title' className='form-control mb-2' placeholder={'Enter Hotel Name'} />
           <div className='text-danger mt-2'>
-            <ErrorMessage name='Coupon_Name' />
+            <ErrorMessage name='Hotel_Title' />
           </div>
         </div>
         <div className='fv-row w-100 flex-md-root'>
           <label className='d-flex align-items-center form-label'>
-            <span className='required'> Details </span>
+            <span className='required'> Hotel Features </span>
           </label>
 
-          <Field name='details' className='form-control mb-2' placeholder={'Enter Coupon Details'} />
+          <Field name='features' className='form-control mb-2' placeholder={'Enter Hotel Features / Ratings / Reviews / Feedbacks'} />
           <div className='text-danger mt-2'>
-            <ErrorMessage name='details' />
+            <ErrorMessage name='features' />
           </div>
         </div>
       </div>
 
       <div className='d-flex flex-wrap gap-5 mb-10'>
         <div className='fv-row w-100 flex-md-root'>
-          <label className='fs-6 fw-bold form-label required'>Minimum Order Value</label>
+          <label className='fs-6 fw-bold form-label required'>Hotel Price</label>
 
           <Field
-            name='Minimum_Order_Value'
+            name='price'
             className='form-control mb-2'
-            placeholder={'Enter Minimum Order Value'}
+            placeholder={'Enter Price Requirement'}
           />
           <div className='text-danger mt-2'>
-              <ErrorMessage name='Minimum_Order_Value' />
+              <ErrorMessage name='price' />
             </div>
      
         </div>
 
         <div className='fv-row w-100 flex-md-root'>
           <label className='d-flex align-items-center form-label'>
-            <span className='required'>Applicable Cards</span>
+            <span className='required'>Location</span>
           </label>
 
           <Field
-            name='Applicable_Cards'
+            name='location'
             className='form-control mb-2'
-            placeholder={'Enter Applicable Cards'}
+            placeholder={'Enter Your Required Location'}
           />
           <div className='text-danger mt-2'>
-            <ErrorMessage name='Applicable_Cards' />
+            <ErrorMessage name='location' />
           </div>
+        </div>
+      </div>
+
+      <div className='d-flex flex-wrap gap-5 mb-10'>
+        <div className='fv-row w-100 flex-md-root'>
+          <label className='fs-6 fw-bold form-label required'>Country</label>
+          <Field
+            name='country'
+            className='form-control mb-2'
+            placeholder={'Enter Required Country'}
+          />
+          <div className='text-danger mt-2'>
+              <ErrorMessage name='country' />
+            </div>
+     
         </div>
 
         <div className='fv-row w-100 flex-md-root'>
           <label className='d-flex align-items-center form-label'>
-            <span className='required'>Coupon Validity</span>
+            <span className='required'>Rooms Description</span>
           </label>
 
           <Field
-            name='Validity'
-            type={'date'}
+            name='rooms'
             className='form-control mb-2'
-            placeholder={'Enter Coupon Validity'}
+            placeholder={'Enter Rooms Description'}
           />
-
-        {/* <DatePicker 
-          selected={startDate} 
-          onChange={date => handleCheckInDate(date)} /> */}
           <div className='text-danger mt-2'>
-            <ErrorMessage name='Validity' />
+            <ErrorMessage name='rooms' />
           </div>
         </div>
       </div>
 
-      <div className='fv-row mb-10'>
-        <label className='d-flex align-items-center form-label'>
-          <span className='required'>Coupon Code</span>
-        </label>
-        <div style={{flexDirection: 'row', display: 'flex'}} className='mb-2 gap-5'>
-          <div className='position-relative w-100'>
-            <Field
-              name='Coupon_Code'
-              className='form-control mb-2'
-              placeholder={'Enter Coupon Code Or Generate Coupon Code'}
-            />
-            <button
-              type='button'
-              onClick={() => setPasswordShow(!showPassword)}
-              className='btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2'
-              data-kt-password-meter-control='visibility'
-            >
-             
-            </button>
-          </div>
-          <button
-            type='button'
-            className='btn btn-lg btn-light-primary w-50 p-0 fs-15'
-            onClick={() => {
-              setFieldValue(
-                'Coupon_Code',
-                Math.random()
-                  .toString(36)
-                  .slice(2)
-              )
-            }}
-          >
-            Generate Coupen Code
-          </button>
-        </div>
-        {/* <PasswordStrengthBar password={values?.Coupon_Code} /> */}
-        <div className='text-danger'>
-          <ErrorMessage name='Coupon_Code' />
-        </div>
-      </div>
-
+{/* 
       <label className='form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-15'>
         <Field className='form-check-input' type='checkbox' name='admin' />
         <span className='form-check-label fs-15 fw-bold'>Administrator</span>
-      </label>
+      </label> */}
     </div>
   )
 }

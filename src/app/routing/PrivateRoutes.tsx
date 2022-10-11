@@ -5,7 +5,7 @@ import TopBarProgress from 'react-topbar-progress-indicator'
 import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
 import {MenuTestPage} from '../pages/MenuTestPage'
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
-import CouponManagement from '../pages/Coupon-Management/CouponManagement'
+// import CouponManagement from '../pages/Coupon-Management/CouponManagement'
 
 const PrivateRoutes = () => {
   const BuilderPageWrapper = lazy(() => import('../pages/layout-builder/BuilderPageWrapper'))
@@ -20,6 +20,8 @@ const PrivateRoutes = () => {
   const RolesPage = lazy(() => import('../pages/role-management/RolesPage'))
   const UsersPage = lazy(() => import('../pages/user-management/UsersPage'))
   const SettingPage = lazy(() => import('../pages/settings/SettingPage'))
+  const CouponManagement = lazy(() => import('../pages/Coupon-Management/CouponManagement'))
+  const HotelManagement = lazy(() => import('../pages/Hotel-Management/HotelManagement'))
 
   return (
     <Routes>
@@ -92,6 +94,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <CouponManagement />
+            </SuspensedView>
+          }
+        />
+         <Route
+          path='hotels'
+          element={
+            <SuspensedView>
+              <HotelManagement />
             </SuspensedView>
           }
         />

@@ -1,0 +1,49 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import clsx from 'clsx'
+import {FC} from 'react'
+import {toAbsoluteUrl} from '../../../../../../_metronic/helpers'
+import {Role} from '../../core/_models'
+import {useListView} from '../../core/ListViewProvider'
+
+type Props = {
+  user: Role
+}
+
+const UserInfoCell: FC<Props> = ({user}) => {
+  const {setItemIdForUpdate} = useListView()
+
+  const openEditModal = () => {
+    setItemIdForUpdate(user.id)
+  }
+
+  return (
+    <div className='d-flex align-items-center'>
+      {/* begin:: Avatar */}
+      <div className='symbol symbol-circle symbol-50px overflow-hidden me-3'>
+        <a onClick={openEditModal} style={{cursor: 'pointer'}}>
+          {user?.image ? (
+            <div className='symbol-label'>
+              <img src={user?.image} alt={user?.Hotel_Title} className='w-100' />
+            </div>
+          ) : (
+            <div className={clsx('symbol-label fs-3', `bg-light-warning`, `text-warning`)}>
+              {user?.Hotel_Title?.charAt(0)}
+            </div>
+          )}
+        </a>
+      </div>
+      <div className='d-flex flex-column'>
+        <a
+          onClick={openEditModal}
+          style={{cursor: 'pointer'}}
+          className='text-gray-800 text-hover-primary mb-1'
+        >
+          {user.Hotel_Title}  
+          {/* {user.last_name}  */}
+        </a>
+      </div>
+    </div>
+  )
+}
+
+export {UserInfoCell}

@@ -24,8 +24,14 @@ export function AsideMenuMain() {
       />
       <AsideMenuItem
           to='/coupon'
-          icon='/media/icons/duotune/general/gen029.svg'
+          icon='/media/icons/duotune/general/gen026.svg'
           title='Coupon Management'
+          fontIcon='bi-layers'
+        /> 
+        <AsideMenuItem
+          to='/hotels'
+          icon='/media/icons/duotune/general/gen029.svg'
+          title='Hotels Management'
           fontIcon='bi-layers'
         /> 
      <AsideMenuItem

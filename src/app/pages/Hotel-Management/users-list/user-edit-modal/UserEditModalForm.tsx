@@ -1,22 +1,22 @@
 import {FC, useEffect, useRef, useState} from 'react'
 import * as Yup from 'yup'
-import {Form, Formik, FormikValues} from 'formik'
+import {Form, Formik, FormikValues , useFormik} from 'formik'
 import {isNotEmpty, KTSVG} from '../../../../../_metronic/helpers'
-import {createAccountSchemas, initialUser, User} from '../core/_models'
+import {createAccountSchemas, initialRole, Role} from '../core/_models'
 import {useListView} from '../core/ListViewProvider'
 import {UsersListLoading} from '../components/loading/UsersListLoading'
-import {createUser, updateBank, updatePan, updateUpi, updateUser} from '../core/_requests'
+import {checkEmail, createUser, updateUser} from '../core/_requests'
 import {useQueryResponse} from '../core/QueryResponseProvider'
 import Swal from 'sweetalert2'
 import {StepperComponent} from '../../../../../_metronic/assets/ts/components'
 import {Step1} from '../steps/Step1'
 import {Step2} from '../steps/Step2'
-import {Step3} from '../steps/step3'
-import {Step4} from '../steps/step4'
+import {Step3} from '../steps/Step3'
+import {Step4} from '../steps/Step4'
 
 type Props = {
   isUserLoading: boolean
-  role: User
+  role: Role
 }
 
 const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
@@ -26,27 +26,34 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
   const {refetch} = useQueryResponse()
   const [isSubmitButton, setSubmitButton] = useState(false)
   const [currentSchema, setCurrentSchema] = useState(createAccountSchemas[0])
-  const [roleForEdit, setRoleForEdit] = useState<User>({
+  const [roleForEdit, setRoleForEdit] = useState<Role>({
     ...role,
-    firstname: role.firstname || initialUser.firstname,
-    lastname: role.lastname || initialUser.lastname,
-    fathername: role.fathername || initialUser.fathername,
-    email: role.email || initialUser.email,
-    email_verified: role.email_verified || initialUser.email_verified,
-    password: role.password || initialUser.password,
-    phone: role.phone || initialUser.phone,
-    phone_verified: role.phone_verified || initialUser.phone_verified,
-    profile_image: role.profile_image || initialUser.profile_image,
-    dob: role.dob || initialUser.dob,
-    gender: role.gender || initialUser.gender,
-    locale: role.locale || initialUser.locale,
-    touchId_enable: role.touchId_enable || initialUser.touchId_enable,
-    address: role.address || initialUser.address,
-    referral: role.referral || initialUser.referral,
-    device: role.device || initialUser.device,
-    bank: role.bank || initialUser.bank,
-    upi: role.upi || initialUser.upi,
-    pan: role.pan || initialUser.pan,
+    Hotel_Title: role.Hotel_Title || initialRole.Hotel_Title,
+    image: role.image || initialRole.image,
+    features: role.features || initialRole.features,
+    country: role.country || initialRole.country,
+    location: role.location || initialRole.location,
+    price: role.price || initialRole.price,
+    rooms:role.rooms || initialRole.rooms,
+    event_capacity:role.event_capacity || initialRole.event_capacity,
+    description_title:role.description_title || initialRole.description_title,
+    short_description:role.short_description || initialRole.short_description,
+    hotel_description:role.hotel_description || initialRole.hotel_description,
+    map:role.map || initialRole.map,
+    address:role.address || initialRole.address,
+    hotel_bgimage:role.hotel_bgimage || initialRole.hotel_bgimage,
+    background_url:role.background_url || initialRole.background_url,
+    content_type:role.content_type || initialRole.content_type,
+    hotel_bgvideo:role.hotel_bgvideo || initialRole.hotel_bgvideo,
+    phone:role.phone || initialRole.phone,
+    email:role.email || initialRole.email,
+    hotel_offer:role.hotel_offer || initialRole.hotel_offer,
+    status:role.status || initialRole.status,
+    lang:role.lang || initialRole.lang,
+
+    // admin: role.admin || initialRole.admin,
+    // role_id: role.role_id || initialRole.role_id,
+    // permissions: role.permissions || initialRole.permissions,
   })
 
   useEffect(() => {
@@ -80,30 +87,25 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
     setCurrentSchema(createAccountSchemas[stepper.current.currentStepIndex - 1])
   }
 
-  const submitStep = async (values: User, actions: FormikValues) => {
+  const submitStep = async (values: Role, actions: FormikValues) => {
     if (!stepper.current) {
       return
     }
+
     setSubmitButton(stepper.current.currentStepIndex === stepper.current.totatStepsNumber! - 1)
+
     setCurrentSchema(createAccountSchemas[stepper.current.currentStepIndex])
-    
+
     if (stepper.current.currentStepIndex !== stepper.current.totatStepsNumber) {
-      if (stepper.current.currentStepIndex == 1) {
-        const user = await updateUser(values)
-        actions.setFieldValue('id', user?.id)
-        actions.setFieldValue('address', user?.address)
-        actions.setFieldValue('device', user?.device)
-      } else if (stepper.current.currentStepIndex == 2) {
-        const bank = await updateBank(values.bank, values.id)
-        actions.setFieldValue('bank', bank)
-      } else if (stepper.current.currentStepIndex == 3) {
-        const upi = await updateUpi(values.upi, values.id)
-        actions.setFieldValue('upi', upi)
-      }
       stepper.current.goNext()
     } else {
       try {
-        await updatePan(values.pan, values.id)
+        if (isNotEmpty(values.id)) {
+          await updateUser(values)
+        } else {
+          // console.log("Create User",values);
+          await createUser(values)
+        }
       } catch (ex) {
         console.error(ex)
       } finally {
@@ -112,13 +114,15 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
         cancel(true)
         Swal.fire({
           title: 'Success!',
-          text: `User ${values.id ? 'Updated' : 'Created'}!`,
+          text: `Coupon ${values.id ? 'Updated' : 'Created'}!`,
           icon: 'success',
           confirmButtonText: 'Okay',
         })
       }
     }
   }
+
+
 
   return (
     <>
@@ -129,19 +133,19 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
       >
         <div className='stepper-nav mb-5'>
           <div className='stepper-item current' data-kt-stepper-element='nav'>
-            <h3 className='stepper-title'>User Details</h3>
+            <h3 className='stepper-title'>Basic Details</h3>
           </div>
 
-          <div className='stepper-item' data-kt-stepper-element='nav'>
-            <h3 className='stepper-title'>Bank Details</h3>
+          <div className='stepper-item ' data-kt-stepper-element='nav'>
+            <h3 className='stepper-title'>Hotel Description</h3>
           </div>
 
-          <div className='stepper-item' data-kt-stepper-element='nav'>
-            <h3 className='stepper-title'>UPI Details</h3>
+          <div className='stepper-item ' data-kt-stepper-element='nav'>
+            <h3 className='stepper-title'>Views & Location</h3>
           </div>
 
-          <div className='stepper-item' data-kt-stepper-element='nav'>
-            <h3 className='stepper-title'>PAN Card Details</h3>
+          <div className='stepper-item ' data-kt-stepper-element='nav'>
+            <h3 className='stepper-title'>Contact Details</h3>
           </div>
         </div>
 

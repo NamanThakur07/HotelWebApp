@@ -13,7 +13,7 @@ const getUsers = (query: string): Promise<UsersQueryResponse> => {
 
 const getUserById = (id: ID): Promise<User | undefined> => {
   return axios
-    .get(`${USER_URL}/${id}`)
+    .get(`http://localhost:2004/user/ById/${id}`)
     .then((response: AxiosResponse<Response<User>>) => response.data)
     .then((response: Response<User>) => response.data)
 }
