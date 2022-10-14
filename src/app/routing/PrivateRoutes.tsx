@@ -22,6 +22,7 @@ const PrivateRoutes = () => {
   const SettingPage = lazy(() => import('../pages/settings/SettingPage'))
   const CouponManagement = lazy(() => import('../pages/Coupon-Management/CouponManagement'))
   const HotelManagement = lazy(() => import('../pages/Hotel-Management/HotelManagement'))
+  const HotelAmenitiesManagement = lazy(() => import('../pages/Hotel-Amenities-Management/HotelAmenitiesManagement'))
 
   return (
     <Routes>
@@ -102,6 +103,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <HotelManagement />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='hotel_amenities'
+          element={
+            <SuspensedView>
+              <HotelAmenitiesManagement />
             </SuspensedView>
           }
         />

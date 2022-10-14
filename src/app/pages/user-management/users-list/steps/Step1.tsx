@@ -43,7 +43,7 @@ const Step1: FC<Props> = ({setFieldValue, values, touched, setFieldError, errors
     const fd = new FormData()
     fd.append('image', file)
     await axios
-      .post(`http://localhost:2000/upload`, fd)
+      .post(`http://localhost:2004/user/uploadProfile`, fd)
       .then((data: AxiosResponse<any>) => {
         setFieldValue('profile_image', data.data)
       })

@@ -15,27 +15,27 @@ type Props = {
 
 const Step1: FC<Props> = ({setFieldValue, values, touched, setFieldError, errors}) => {
   console.log(touched, 'touched', errors)
-  const validateEmail = async (value: string) => {
-    let error
-    var re = /\S+@\S+\.\S+/
-    let correct = re.test(value)
-    if (value != '' && correct && !values.id) {
-      await checkEmail(value)
-        .then((data: any) => {
-          if (data.data == 'Email already exists') {
-            error = data.data
-            // setFieldError('email', data.data)
-          } else {
-            error = null
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
+    // const validateEmail = async (value: string) => {
+    //   let error
+    //   var re = /\S+@\S+\.\S+/
+    //   let correct = re.test(value)
+    //   if (value != '' && correct && !values.id) {
+    //     await checkEmail(value)
+    //       .then((data: any) => {
+    //         if (data.data == 'Email already exists') {
+    //           error = data.data
+    //           // setFieldError('email', data.data)
+    //         } else {
+    //           error = null
+    //         }
+    //       })
+    //       .catch((err) => {
+    //         console.log(err)
+    //       })
+    //   }
 
-    return error
-  }
+    //   return error
+    // }
 
   // const [startDate, setStartDate] = useState();
   const [showPassword, setPasswordShow] = useState(false)

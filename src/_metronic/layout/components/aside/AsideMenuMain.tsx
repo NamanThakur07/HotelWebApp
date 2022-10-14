@@ -34,6 +34,12 @@ export function AsideMenuMain() {
           title='Hotels Management'
           fontIcon='bi-layers'
         /> 
+        <AsideMenuItem
+          to='/hotel_amenities'
+          icon='/media/icons/duotune/general/gen002.svg'
+          title='Hotel Amenities'
+          fontIcon='bi-layers'
+        /> 
      <AsideMenuItem
         to='/roles'
         icon='/media/icons/duotune/general/gen055.svg'
