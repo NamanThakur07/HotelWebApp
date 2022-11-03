@@ -25,6 +25,9 @@ export type Role = {
   hotel_offer:any,
   status:any,
   lang:string,
+  amenities:any,
+  Hotels:any,
+  icons:any
   // role_id: any
   // permissions: any
 }
@@ -55,30 +58,37 @@ export const initialRole: Role = {
   status:'',
   lang:'',
   event_capacity:'',
+  amenities:'',
+  Hotels:'',
+  icons:''
+
   // permissions: [],
   // role_id: null,
 }
 
 const createAccountSchemas = [
   Yup.object({
-    Hotel_Title: Yup.string()
-      .required('Hotel Name Is required')
-      .label('Hotel Title'),
-    features:Yup.string()
-      .required('Hotel Features Is Required')
-      .label('Hotel Features'),
-    country: Yup.string()
-    .required('Country Are required')
-    .label('Hotel country'),
-    rooms: Yup.string()
-    .required('Rooms Are required')
-    .label('Hotel rooms'),
-    location: Yup.string()
-      .required('Location Are required')
-      .label('Hotel Location'),
-    price: Yup.string()
-      .required(' Price is required')
-      .label('Hotel Price'),
+    amenities: Yup.string()
+      .required('Hotel Amenity Is required')
+      .label('Hotel Amenity'),
+    icons: Yup.string()
+    .required('Amenity Icon Is required')
+    .label('Amenity Icon'),
+    // features:Yup.string()
+    //   .required('Hotel Features Is Required')
+    //   .label('Hotel Features'),
+    // country: Yup.string()
+    // .required('Country Are required')
+    // .label('Hotel country'),
+    // rooms: Yup.string()
+    // .required('Rooms Are required')
+    // .label('Hotel rooms'),
+    // location: Yup.string()
+    //   .required('Location Are required')
+    //   .label('Hotel Location'),
+    // price: Yup.string()
+    //   .required(' Price is required')
+    //   .label('Hotel Price'),
     // description_title: Yup.string()
     //   .required('Description Title Are required')
     //   .label('Hotel Description Title'),

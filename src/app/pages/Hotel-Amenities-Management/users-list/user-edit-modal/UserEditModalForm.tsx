@@ -10,9 +10,7 @@ import {useQueryResponse} from '../core/QueryResponseProvider'
 import Swal from 'sweetalert2'
 import {StepperComponent} from '../../../../../_metronic/assets/ts/components'
 import {Step1} from '../steps/Step1'
-import {Step2} from '../steps/Step2'
-import {Step3} from '../steps/Step3'
-import {Step4} from '../steps/Step4'
+
 
 type Props = {
   isUserLoading: boolean
@@ -28,7 +26,7 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
   const [currentSchema, setCurrentSchema] = useState(createAccountSchemas[0])
   const [roleForEdit, setRoleForEdit] = useState<Role>({
     ...role,
-    Hotel_Title: role.Hotel_Title || initialRole.Hotel_Title,
+    Hotel_Title: role?.Hotels?.Hotel_Title || initialRole?.Hotels?.Hotel_Title,
     image: role.image || initialRole.image,
     features: role.features || initialRole.features,
     country: role.country || initialRole.country,
@@ -49,17 +47,22 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
     email:role.email || initialRole.email,
     hotel_offer:role.hotel_offer || initialRole.hotel_offer,
     status:role.status || initialRole.status,
-    lang:role.lang || initialRole.lang,
+    lang:role.lang || initialRole.lang
+
 
     // admin: role.admin || initialRole.admin,
     // role_id: role.role_id || initialRole.role_id,
     // permissions: role.permissions || initialRole.permissions,
   })
 
+
+
   useEffect(() => {
     if (!stepperRef.current) {
       return
     }
+  console.log("Amenities Hotel Data",roleForEdit);
+
 
     loadStepper()
   }, [stepperRef])
@@ -133,19 +136,7 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
       >
         <div className='stepper-nav mb-5'>
           <div className='stepper-item current' data-kt-stepper-element='nav'>
-            <h3 className='stepper-title'>Basic Details</h3>
-          </div>
-
-          <div className='stepper-item ' data-kt-stepper-element='nav'>
-            <h3 className='stepper-title'>Hotel Description</h3>
-          </div>
-
-          <div className='stepper-item ' data-kt-stepper-element='nav'>
-            <h3 className='stepper-title'>Views & Location</h3>
-          </div>
-
-          <div className='stepper-item ' data-kt-stepper-element='nav'>
-            <h3 className='stepper-title'>Contact Details</h3>
+            <h3 className='stepper-title'>Amenity Details</h3>
           </div>
         </div>
 
@@ -167,17 +158,6 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
                 />
               </div>
 
-              <div data-kt-stepper-element='content'>
-                <Step2 setFieldValue={setFieldValue} values={values} />
-              </div>
-
-              <div data-kt-stepper-element='content'>
-                <Step3 setFieldValue={setFieldValue} values={values} />
-              </div>
-
-              <div data-kt-stepper-element='content'>
-                <Step4 setFieldValue={setFieldValue} values={values} />
-              </div>
 
               <div className='d-flex flex-stack pt-15'>
                 <div className='mr-2'>
@@ -185,20 +165,20 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
                     onClick={prevStep}
                     type='button'
                     className='btn btn-lg btn-light-primary me-3'
-                    data-kt-stepper-action='previous'
-                  >
-                    <KTSVG
-                      path='/media/icons/duotune/arrows/arr063.svg'
-                      className='svg-icon-4 me-1'
-                    />
-                    Back
-                  </button>
-                </div>
+                      data-kt-stepper-action='previous'
+                    >
+                      <KTSVG
+                        path='/media/icons/duotune/arrows/arr063.svg'
+                        className='svg-icon-4 me-1'
+                      />
+                      Back
+                    </button>
+                  </div>
 
-                <div>
-                  <button type='submit' className='btn btn-lg btn-primary me-3'>
-                    <span className='indicator-label'>
-                      {!isSubmitButton && 'Continue'}
+                  <div>
+                    <button type='submit' className='btn btn-lg btn-primary me-3'>
+                      <span className='indicator-label'>
+                        {!isSubmitButton && 'Continue'}
                       {isSubmitButton && 'Submit'}
                       <KTSVG
                         path='/media/icons/duotune/arrows/arr064.svg'
