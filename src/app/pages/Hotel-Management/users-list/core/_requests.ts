@@ -13,6 +13,12 @@ const getUsers = (query: string): Promise<PermissionQueryResponse> => {
     .then((d: AxiosResponse<PermissionQueryResponse>) => d.data)
 }
 
+const GetAmenities = () : Promise<PermissionQueryResponse> => {
+  return axios
+  .get(`http://localhost:2004/user/ `)
+  .then((d: AxiosResponse<PermissionQueryResponse>) => d.data)
+}
+
 const getRoles = (): Promise<PermissionQueryResponse> => {
   return axios.get(`${ROLE_URL}/roles`).then((d: AxiosResponse<PermissionQueryResponse>) => d.data)
 }
@@ -126,4 +132,5 @@ export {
   getPermissions,
   getRoles,
   checkEmail,
+  GetAmenities
 }

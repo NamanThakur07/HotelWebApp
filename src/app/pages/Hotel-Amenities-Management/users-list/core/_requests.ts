@@ -15,7 +15,7 @@ const getUsers = (query: string): Promise<PermissionQueryResponse> => {
 
 const GetAmenities = () : Promise<PermissionQueryResponse> => {
   return axios
-  .get(`http://localhost:2004/user/GetAllAmenities`)
+  .get(`http://localhost:2004/user/ `)
   .then((d: AxiosResponse<PermissionQueryResponse>) => d.data)
 }
 

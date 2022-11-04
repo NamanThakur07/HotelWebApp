@@ -13,6 +13,8 @@ import {Step1} from '../steps/Step1'
 import {Step2} from '../steps/Step2'
 import {Step3} from '../steps/Step3'
 import {Step4} from '../steps/Step4'
+import {Step5} from '../steps/Step5'
+
 
 type Props = {
   isUserLoading: boolean
@@ -147,6 +149,10 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
           <div className='stepper-item ' data-kt-stepper-element='nav'>
             <h3 className='stepper-title'>Contact Details</h3>
           </div>
+
+          <div className='stepper-item ' data-kt-stepper-element='nav'>
+            <h3 className='stepper-title'>Amenities</h3>
+          </div>
         </div>
 
         <Formik
@@ -177,6 +183,10 @@ const UserEditModalForm: FC<Props> = ({role, isUserLoading}) => {
 
               <div data-kt-stepper-element='content'>
                 <Step4 setFieldValue={setFieldValue} values={values} />
+              </div>
+
+              <div data-kt-stepper-element='content'>
+                <Step5 setFieldValue={setFieldValue} values={values} />
               </div>
 
               <div className='d-flex flex-stack pt-15'>
