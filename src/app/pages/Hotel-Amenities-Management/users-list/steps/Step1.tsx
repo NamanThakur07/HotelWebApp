@@ -51,14 +51,10 @@ const Step1: FC<Props> = ({ setFieldValue, values, touched, setFieldError, error
 
   return (
     <div className='w-100'>
-
       <div className='d-flex flex-wrap gap-5 mb-10'>
         <div className='fv-row w-100 flex-md-root'>
         <label className='form-label required'>Hotel Assignable Amenities</label>
-
-
           <Field name='amenities' className='form-control mb-2' placeholder={'Enter Hotel Amenities'} />
-
           <div className='text-danger mt-2'>
             <ErrorMessage name='amenities' />
           </div>
@@ -66,20 +62,16 @@ const Step1: FC<Props> = ({ setFieldValue, values, touched, setFieldError, error
 
         <div className='fv-row w-100 flex-md-root'>
           <label className='form-label required'>Hotel Amenities Icons</label>
-
           <div className="d-flex">
             <IconPicker className="icon-pikerss border-primary" style={{ innerHeight: "10px", innerWidth: "0px", height: '4px!important', width: '43px!important' }} value={value} size={24} color="#000" onChange={(e: any) => setValue(e)} />
             {/* <Field name='icons' className='form-control mb-2 border-0' placeholder={'Enter Amenities Icon'}  value={value}/> */}
             <Field name="icons"  placeholder="icon"/>
           </div>
-
-          <div className='text-danger mt-2'>
+            <div className='text-danger mt-2'>
               <ErrorMessage name='icons' />
-              </div>
-
+            </div>
         </div>
       </div>
-
     </div>
   )
 }
