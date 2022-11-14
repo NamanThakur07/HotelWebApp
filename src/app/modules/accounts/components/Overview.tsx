@@ -8,8 +8,12 @@ import {
   ListsWidget5,
   TablesWidget5,
 } from '../../../../_metronic/partials/widgets'
+import { useAuth } from '../../auth'
 
 export function Overview() {
+
+  const {currentUser, logout} = useAuth()
+
   return (
     <>
       <div className='card mb-5 mb-xl-10' id='kt_profile_details_view'>
@@ -18,7 +22,7 @@ export function Overview() {
             <h3 className='fw-bolder m-0'>Profile Details</h3>
           </div>
 
-          <Link to='/crafted/account/settings' className='btn btn-primary align-self-center'>
+          <Link to='/staff' className='btn btn-primary align-self-center'>
             Edit Profile
           </Link>
         </div>
@@ -28,17 +32,17 @@ export function Overview() {
             <label className='col-lg-4 fw-bold text-muted'>Full Name</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>Max Smith</span>
+              <span className='fw-bolder fs-6 text-dark'>{currentUser?.first_name} {currentUser?.last_name}</span>
             </div>
           </div>
 
-          <div className='row mb-7'>
+          {/* <div className='row mb-7'>
             <label className='col-lg-4 fw-bold text-muted'>Company</label>
 
             <div className='col-lg-8 fv-row'>
               <span className='fw-bold fs-6'>Keenthemes</span>
             </div>
-          </div>
+          </div> */}
 
           <div className='row mb-7'>
             <label className='col-lg-4 fw-bold text-muted'>
@@ -51,13 +55,20 @@ export function Overview() {
             </label>
 
             <div className='col-lg-8 d-flex align-items-center'>
-              <span className='fw-bolder fs-6 me-2'>044 3276 454 935</span>
+              <span className='fw-bolder fs-6 me-2'>{currentUser?.phone_number}</span>
 
+              {currentUser?.phone_number ? 
+              (
               <span className='badge badge-success'>Verified</span>
+
+              ) : (
+              <span className='badge badge-danger'>Un-Verified</span>
+              )}
+
             </div>
           </div>
 
-          <div className='row mb-7'>
+          {/* <div className='row mb-7'>
             <label className='col-lg-4 fw-bold text-muted'>Company Site</label>
 
             <div className='col-lg-8'>
@@ -65,7 +76,7 @@ export function Overview() {
                 keenthemes.com
               </a>
             </div>
-          </div>
+          </div> */}
 
           <div className='row mb-7'>
             <label className='col-lg-4 fw-bold text-muted'>
@@ -78,7 +89,7 @@ export function Overview() {
             </label>
 
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>Germany</span>
+              <span className='fw-bolder fs-6 text-dark'>India</span>
             </div>
           </div>
 
@@ -98,7 +109,7 @@ export function Overview() {
             </div>
           </div>
 
-          <div className='notice d-flex bg-light-warning rounded border-warning border border-dashed p-6'>
+          {/* <div className='notice d-flex bg-light-warning rounded border-warning border border-dashed p-6'>
             <KTSVG
               path='icons/duotune/general/gen044.svg'
               className='svg-icon-2tx svg-icon-warning me-4'
@@ -116,10 +127,10 @@ export function Overview() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
-
+{/* 
       <div className='row gy-10 gx-xl-10'>
         <div className='col-xl-6'>
           <ChartsWidget1 className='card-xxl-stretch mb-5 mb-xl-10' />
@@ -138,7 +149,7 @@ export function Overview() {
         <div className='col-xl-6'>
           <TablesWidget5 className='card-xxl-stretch mb-5 mb-xl-10' />
         </div>
-      </div>
+      </div> */}
     </>
   )
 }

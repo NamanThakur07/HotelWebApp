@@ -10,13 +10,19 @@ import {
 } from '../../../partials'
 import {useLayout} from '../../core'
 
+import {useAuth}  from '../../../../app/modules/auth'
+
 const toolbarButtonMarginClass = 'ms-1 ms-lg-3',
   toolbarButtonHeightClass = 'w-30px h-30px w-md-40px h-md-40px',
   toolbarUserAvatarHeightClass = 'symbol-30px symbol-md-40px',
   toolbarButtonIconSizeClass = 'svg-icon-1'
 
 const Topbar: FC = () => {
+
+
+
   const {config} = useLayout()
+  const {currentUser} = useAuth()
 
   return (
     <div className='d-flex align-items-stretch flex-shrink-0'>
@@ -127,7 +133,7 @@ const Topbar: FC = () => {
           data-kt-menu-placement='bottom-end'
           data-kt-menu-flip='bottom'
         >
-          <img src={toAbsoluteUrl('/media/avatars/300-1.jpg')} alt='metronic' />
+          <img src={currentUser?.profile_image ? currentUser?.profile_image : toAbsoluteUrl('/media/avatars/300-1.jpg')} alt='metronic' />
         </div>
         <HeaderUserMenu />
         {/* end::Toggle */}

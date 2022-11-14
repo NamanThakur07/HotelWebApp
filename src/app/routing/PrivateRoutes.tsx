@@ -57,7 +57,7 @@ const PrivateRoutes = () => {
               <WidgetsPage />
             </SuspensedView>
           }
-        />
+        /> */}
         <Route
           path='crafted/account/*'
           element={
@@ -66,7 +66,7 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
-        <Route
+        {/* <Route
           path='apps/chat/*'
           element={
             <SuspensedView>

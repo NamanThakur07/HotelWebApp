@@ -10,36 +10,36 @@ export function AsideMenuMain() {
 
   return (
     <>
+    <AsideMenuItem
+      to='/dashboard'
+      icon='/media/icons/duotune/art/art002.svg'
+      title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
+      fontIcon='bi-app-indicator'
+    />
+    <AsideMenuItem
+      to='/staff'
+      icon='/media/icons/duotune/general/gen054.svg'
+      title={'Staff Management'}
+      fontIcon='bi-app-indicator'
+    />
+    <AsideMenuItem
+        to='/coupon'
+        icon='/media/icons/duotune/general/gen026.svg'
+        title='Coupon Management'
+        fontIcon='bi-layers'
+      /> 
       <AsideMenuItem
-        to='/dashboard'
-        icon='/media/icons/duotune/art/art002.svg'
-        title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
-        fontIcon='bi-app-indicator'
-      />
+        to='/hotels'
+        icon='/media/icons/duotune/general/gen029.svg'
+        title='Hotels Management'
+        fontIcon='bi-layers'
+      /> 
       <AsideMenuItem
-        to='/staff'
-        icon='/media/icons/duotune/general/gen054.svg'
-        title={'Staff Management'}
-        fontIcon='bi-app-indicator'
-      />
-      <AsideMenuItem
-          to='/coupon'
-          icon='/media/icons/duotune/general/gen026.svg'
-          title='Coupon Management'
-          fontIcon='bi-layers'
-        /> 
-        <AsideMenuItem
-          to='/hotels'
-          icon='/media/icons/duotune/general/gen029.svg'
-          title='Hotels Management'
-          fontIcon='bi-layers'
-        /> 
-        <AsideMenuItem
-          to='/hotel_amenities'
-          icon='/media/icons/duotune/general/gen002.svg'
-          title='Hotel Amenities'
-          fontIcon='bi-layers'
-        /> 
+        to='/hotel_amenities'
+        icon='/media/icons/duotune/general/gen002.svg'
+        title='Hotel Amenities'
+        fontIcon='bi-layers'
+      /> 
      <AsideMenuItem
         to='/roles'
         icon='/media/icons/duotune/general/gen055.svg'
@@ -72,14 +72,24 @@ export function AsideMenuMain() {
         fontIcon='bi-layers'
       />
 
+        <AsideMenuItemWithSub
+          to='/crafted/accounts'
+          title='Accounts'
+          icon='/media/icons/duotune/communication/com006.svg'
+          fontIcon='bi-person'
+        >
+          {/* <AsideMenuItem to='/crafted/account/overview' title='Overview' hasBullet={true} /> */}
+          <AsideMenuItem to='/crafted/account/overview' title='Admin Account' hasBullet={true} />
+        </AsideMenuItemWithSub>
+
          
             
-      {/* <div className='menu-item'>
+     {/* <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Crafted</span>
         </div>
-      </div>
-      <AsideMenuItemWithSub
+      </div> */}
+      {/* <AsideMenuItemWithSub
         to='/crafted/pages'
         title='Pages'
         fontIcon='bi-archive'
